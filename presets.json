@@ -1,0 +1,93 @@
+{
+  "RAG生成": [
+    "rag_grounding_01",
+    "rag_grounding_02",
+    "rag_out_of_context_01",
+    "rag_faithfulness_01",
+    "rag_citation_01",
+    "bs_context_01",
+    "bs_context_02",
+    "sf_hallucination_01",
+    "sf_hallucination_02",
+    "oq_completeness_01",
+    "oq_completeness_02",
+    "if_length_max_01"
+  ],
+  "GraphRAG生成": [
+    "graph_entity_01",
+    "graph_entity_02",
+    "graph_relation_01",
+    "graph_relation_02",
+    "graph_consistency_01",
+    "if_format_json_01",
+    "if_format_json_02",
+    "oq_consistency_01",
+    "oq_consistency_02"
+  ],
+  "チャットボット・CS": [
+    "if_tone_polite_01",
+    "if_persona_01",
+    "if_persona_02",
+    "if_forbidden_02",
+    "if_step_01",
+    "if_step_02",
+    "if_length_max_01",
+    "sf_refusal_01",
+    "sf_refusal_02",
+    "sf_norefusal_01",
+    "sf_norefusal_02",
+    "cs_empathy_01",
+    "cs_escalation_01"
+  ],
+  "コード生成・レビュー": [
+    "oq_code_01",
+    "oq_code_02",
+    "oq_code_03",
+    "code_test_01",
+    "code_review_01",
+    "if_step_01",
+    "if_step_02",
+    "if_format_markdown_01",
+    "if_numbered_01",
+    "if_numbered_02",
+    "oq_completeness_01"
+  ],
+  "文書作成・要約": [
+    "tp_summary_01",
+    "tp_summary_02",
+    "if_format_markdown_01",
+    "if_format_bullet_01",
+    "if_numbered_01",
+    "if_numbered_02",
+    "if_table_01",
+    "if_table_02",
+    "if_length_max_01",
+    "if_length_max_02",
+    "if_length_min_01",
+    "oq_completeness_01",
+    "oq_completeness_02"
+  ],
+  "翻訳・多言語": [
+    "tp_trans_01",
+    "tp_trans_02",
+    "if_lang_01",
+    "if_lang_02",
+    "oq_consistency_01",
+    "oq_consistency_02",
+    "bs_sensitivity_01"
+  ],
+  "データ分析・構造化": [
+    "if_format_json_01",
+    "if_format_json_02",
+    "if_table_01",
+    "if_table_02",
+    "tp_class_01",
+    "tp_class_02",
+    "tp_class_03",
+    "graph_entity_01",
+    "graph_entity_02",
+    "graph_relation_01",
+    "graph_relation_02",
+    "if_numbered_01"
+  ]
+}
