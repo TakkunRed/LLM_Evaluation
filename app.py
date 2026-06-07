@@ -492,17 +492,13 @@ with tab_history:
         # ── ランキング ────────────────────────────────────────────────────────
         ranking_rows = []
         for run in runs:
-            summary = get_summary_by_run(run["id"])
-            if not summary:
+            rows = get_results_by_run(run["id"])
+            if not rows:
                 continue
-            scores = {r["metric"]: r["avg_score"] for r in summary}
-            overall = sum(scores.values()) / len(scores)
-            if_scores = [v for m, v in scores.items()
-                         if any(tc["metric"] == m and tc["category"] == "instruction_following"
-                                for tc in TEST_CASES)]
-            oq_scores = [v for m, v in scores.items()
-                         if any(tc["metric"] == m and tc["category"] == "output_quality"
-                                for tc in TEST_CASES)]
+            df_r = pd.DataFrame([dict(r) for r in rows])
+            overall = _category_weighted_score(df_r)
+            if_scores = df_r[df_r["category"] == "instruction_following"]["score"].tolist()
+            oq_scores = df_r[df_r["category"] == "output_quality"]["score"].tolist()
             ranking_rows.append({
                 "run_id": run["id"],
                 "実行名": run["run_name"] or run["model_name"],
@@ -690,15 +686,12 @@ with tab_compare:
                 overall_lines = []
                 for lbl in selected:
                     run_id = run_options[lbl]
-                    cat_scores: dict[str, list] = {}
-                    for row in get_summary_by_run(run_id):
-                        tc = next((t for t in TEST_CASES if t["metric"] == row["metric"]), None)
-                        cat = tc["category"] if tc else "unknown"
-                        cat_scores.setdefault(cat, []).append(row["avg_score"])
-                    weighted = (
-                        sum(sum(v) / len(v) for v in cat_scores.values()) / len(cat_scores)
-                        if cat_scores else 0.0
-                    )
+                    rows = get_results_by_run(run_id)
+                    if rows:
+                        df_r = pd.DataFrame([dict(r) for r in rows])
+                        weighted = _category_weighted_score(df_r)
+                    else:
+                        weighted = 0.0
                     overall_lines.append(f"- {lbl}: 総合 {weighted:.1%}")
 
                 metric_pivot = df_cmp.pivot_table(

@@ -10,3 +10,5 @@ wheels/
 .venv
 uv.lock
 *.txt
+db/results.db
+evaluation_summary.md
